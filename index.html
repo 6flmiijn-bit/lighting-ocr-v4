@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>OCR照会 V3.4.10.10.8.4.2</title>
+<title>OCR照会 V3.4.11.11.10.8.4.2</title>
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 <style>
 *{box-sizing:border-box}
@@ -526,11 +526,60 @@ input[type=file]{display:none}
   .v410-qty{font-size:13px}
 }
 
+
+/* V3.4.11: result card restored, camera OCR frame is 40px */
+.result{
+  min-height:unset!important;
+  max-height:none!important;
+  overflow:visible!important;
+  margin-bottom:10px!important;
+  padding:14px!important;
+  display:grid!important;
+  grid-template-columns:1fr 108px!important;
+  align-items:stretch!important;
+}
+.result .ruleBox,
+.result .rule-box{
+  display:flex!important;
+}
+.result .state{
+  font-size:18px!important;
+  line-height:1.2!important;
+  margin:0!important;
+}
+.result .readModel,
+.result .read-model,
+.result .model{
+  font-size:26px!important;
+  line-height:1.15!important;
+  margin:6px 0!important;
+}
+.result .symbol{
+  font-size:54px!important;
+  line-height:1!important;
+}
+.result .meta{
+  display:block!important;
+  font-size:15px!important;
+  line-height:1.5!important;
+}
+.ocrGuideBox{
+  position:absolute!important;
+  left:4%!important;
+  right:4%!important;
+  top:calc(50% - 20px)!important;
+  height:40px!important;
+  border:3px solid rgba(255,255,255,.95)!important;
+  border-radius:10px!important;
+  pointer-events:none!important;
+  box-shadow:0 0 8px rgba(255,255,255,.7)!important;
+}
+
 canvas{display:none}
 </style>
 </head>
 <body>
-<header>OCR照会 V3.4.10.10.8.4.2<button id="btnHelp" class="helpBtn">ヘルプ</button></header>
+<header>OCR照会 V3.4.11.11.10.8.4.2<button id="btnHelp" class="helpBtn">ヘルプ</button></header>
 <div class="wrap">
 <section class="camera"><video id="video" playsinline muted></video><div class="crossH"></div><div class="crossV"></div><div class="guide">型番・照会記号を十字の中心に合わせてください</div></section>
 <section class="result resultAlways" id="result"><div><div class="state">待機中</div><div class="readModel">---</div><div class="meta">読取結果を表示します</div></div><div class="ruleBox" style="color:white"><div class="ruleKey">白</div><div class="ruleName">その他</div></div></section>
@@ -636,7 +685,19 @@ async function startAuto(){try{isStopped=false;await startCamera();if(timer)clea
 async function startCamera(){if(stream)return;stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:"environment"},width:{ideal:1920},height:{ideal:1080}},audio:false});video.srcObject=stream;await video.play();await ensureWorker();setStatus("自動読取中")}
 function stopAll(){isStopped=true;if(timer){clearInterval(timer);timer=null}if(stream){stream.getTracks().forEach(t=>t.stop());stream=null}video.srcObject=null;busy=false;setStatus("停止しました")}
 async function toggleLight(){try{if(!stream)return alert("先にカメラ起動してください");let tr=stream.getVideoTracks()[0],cap=tr.getCapabilities?tr.getCapabilities():null;if(!cap||!cap.torch)return alert("このスマホ/ブラウザはライト制御に対応していません");torchOn=!torchOn;await tr.applyConstraints({advanced:[{torch:torchOn}]});setStatus(torchOn?"ライトON":"ライトOFF")}catch(e){alert("ライト切替エラー："+e.message)}}
-function crop(){if(!video.videoWidth)return null;let c=work,sw=video.videoWidth*.62,sh=video.videoHeight*.26,sx=(video.videoWidth-sw)/2,sy=(video.videoHeight-sh)/2,scale=1200/sw;c.width=1200;c.height=Math.max(230,Math.floor(sh*scale));c.getContext("2d",{willReadFrequently:true}).drawImage(video,sx,sy,sw,sh,0,0,c.width,c.height);return c}
+function crop(){
+if(!video.videoWidth)return null;
+let c=work;
+let sw=video.videoWidth*.92;
+let sh=Math.max(video.videoHeight*.10, 80);
+let sx=(video.videoWidth-sw)/2;
+let sy=(video.videoHeight-sh)/2;
+let scale=1500/sw;
+c.width=1500;
+c.height=Math.max(140,Math.floor(sh*scale));
+let ctx=c.getContext("2d",{willReadFrequently:true});
+ctx.drawImage(video,sx,sy,sw,sh,0,0,c.width,c.height);
+return c}
 async function readOnce(){if(isStopped)return;if(!stream)return alert("先にカメラ起動してください");if(busy)return;busy=true;setStatus("読取中...");try{let c=crop();if(!c){setStatus("カメラ準備中");return}let w=await ensureWorker(),r=await w.recognize(c);if(isStopped)return;let text=r.data.text||"";rawBox.textContent="読取文字：\\n"+text;let m=readTarget==="symbol"?matchSymbol(text):matchModel(text);if(m.hit){if(readTarget==="symbol")showSymbolHit(m.hit,m.score,m.cand);else{showHit(m.hit,m.score,m.cand);tryAutoRegister(m.hit,m.score)}}else showMissing(m.cand,text)}catch(e){setStatus("読取エラー："+e.message)}finally{busy=false}}
 function showHit(hit,score,read){
 let cat=categoryFor(hit.symbol,hit.type);
