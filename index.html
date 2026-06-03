@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>OCR照会 V3.4</title>
+<title>OCR照会 V3.4.2.2</title>
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 <style>
 *{box-sizing:border-box}
@@ -109,50 +109,50 @@ input[type=file]{display:none}
 }
 
 
-/* V3.4 stable layout */
-.v34ResultCard{
+/* V3.4.1 stable checklist layout */
+.v341-result-card{
   background:#fff;
   color:#111;
   border:2px solid #8a5a3f;
   border-radius:14px;
   padding:10px;
 }
-.v34ResultTitle{
+.v341-title{
   font-size:17px;
   font-weight:1000;
   color:#155724;
   margin-bottom:6px;
 }
-.v34ResultMain{
+.v341-result-line{
   display:flex;
   justify-content:space-between;
   align-items:flex-end;
   gap:10px;
 }
-.v34ResultModel{
+.v341-result-model{
   font-size:28px;
   line-height:1.1;
   font-weight:1000;
   word-break:break-all;
 }
-.v34ResultSymbol{
+.v341-result-symbol{
   font-size:30px;
   font-weight:1000;
   white-space:nowrap;
 }
-.v34Sub{
+.v341-sub{
   margin-top:6px;
   font-size:14px;
   font-weight:800;
 }
-.v34Folder{
+.v341-folder{
   border:1px solid #8a5a3f;
   border-radius:12px;
   overflow:hidden;
   margin-top:10px;
   background:#f0dfcf;
 }
-.v34FolderTitle{
+.v341-folder-title{
   background:#8a5a3f;
   color:#fff;
   padding:10px 12px;
@@ -161,8 +161,10 @@ input[type=file]{display:none}
   justify-content:space-between;
   cursor:pointer;
 }
-.v34FolderBody.closed{display:none}
-.v34Card{
+.v341-folder-body.closed{
+  display:none;
+}
+.v341-card{
   background:#fff6ee;
   color:#111;
   border:1px solid #8a5a3f;
@@ -170,19 +172,19 @@ input[type=file]{display:none}
   padding:10px;
   margin:8px;
 }
-.v34Top{
+.v341-top{
   display:flex;
   justify-content:space-between;
-  gap:10px;
   align-items:flex-start;
+  gap:10px;
 }
-.v34Model{
+.v341-model{
   font-size:20px;
   line-height:1.2;
   font-weight:1000;
   word-break:break-all;
 }
-.v34Qty{
+.v341-qty{
   min-width:58px;
   text-align:right;
   white-space:nowrap;
@@ -190,43 +192,176 @@ input[type=file]{display:none}
   font-weight:1000;
   color:#5b3423;
 }
-.v34Symbol{
-  margin-top:4px;
+.v341-symbol{
+  margin-top:5px;
   font-size:26px;
+  line-height:1.1;
   font-weight:1000;
 }
-.v34QtyBtns{
+.v341-qty-btns{
   display:grid;
   grid-template-columns:1fr 1fr 1fr 1fr;
   gap:6px;
   margin-top:8px;
 }
-.v34Bottom{
+.v341-bottom{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:8px;
   margin-top:8px;
 }
-.v34Delete{
-  background:#9b3f34;
-  color:#fff;
-  border:1px solid #6b241d;
-}
-.v34Lock{
+.v341-lock{
   background:#fff;
   color:#111;
   border:1px solid #8a5a3f;
 }
-.v34Lock.locked{
+.v341-lock.locked{
   color:#ffd400!important;
   background:#5b3423!important;
+}
+.v341-delete{
+  background:#9b3f34;
+  color:#fff;
+  border:1px solid #6b241d;
+}
+
+
+/* V3.4.2 read wide + delivery folders */
+.v342-read-wrap{
+  width:100%;
+}
+.v342-result-card{
+  background:#fff;
+  color:#111;
+  border:2px solid #8a5a3f;
+  border-radius:14px;
+  padding:10px;
+  width:100%;
+}
+.v342-title{
+  font-size:17px;
+  font-weight:1000;
+  color:#155724;
+  margin-bottom:6px;
+}
+.v342-line{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:12px;
+  align-items:center;
+}
+.v342-model{
+  font-size:30px;
+  line-height:1.1;
+  font-weight:1000;
+  word-break:break-all;
+}
+.v342-symbol{
+  font-size:32px;
+  font-weight:1000;
+  white-space:nowrap;
+}
+.v342-sub{
+  margin-top:6px;
+  font-size:14px;
+  font-weight:800;
+}
+.v342-new-folder{
+  width:100%;
+  background:#5b3423;
+  color:#fff;
+  border:1px solid #2f1b12;
+  border-radius:12px;
+  padding:12px 8px;
+  font-size:16px;
+  font-weight:900;
+  margin:8px 0;
+}
+.v342-delivery{
+  border:1px solid #8a5a3f;
+  border-radius:12px;
+  overflow:hidden;
+  margin-top:10px;
+  background:#f0dfcf;
+}
+.v342-delivery-title{
+  background:#8a5a3f;
+  color:#fff;
+  padding:10px 12px;
+  font-weight:900;
+  display:flex;
+  justify-content:space-between;
+  cursor:pointer;
+}
+.v342-delivery-body.closed{
+  display:none;
+}
+.v342-card{
+  background:#fff6ee;
+  color:#111;
+  border:1px solid #8a5a3f;
+  border-radius:12px;
+  padding:10px;
+  margin:8px;
+}
+.v342-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:10px;
+}
+.v342-card-model{
+  font-size:20px;
+  line-height:1.2;
+  font-weight:1000;
+  word-break:break-all;
+}
+.v342-card-qty{
+  min-width:58px;
+  text-align:right;
+  white-space:nowrap;
+  font-size:22px;
+  font-weight:1000;
+  color:#5b3423;
+}
+.v342-card-symbol{
+  margin-top:5px;
+  font-size:26px;
+  line-height:1.1;
+  font-weight:1000;
+}
+.v342-qty-btns{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr 1fr;
+  gap:6px;
+  margin-top:8px;
+}
+.v342-bottom{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-top:8px;
+}
+.v342-lock{
+  background:#fff;
+  color:#111;
+  border:1px solid #8a5a3f;
+}
+.v342-lock.locked{
+  color:#ffd400!important;
+  background:#5b3423!important;
+}
+.v342-delete{
+  background:#9b3f34;
+  color:#fff;
+  border:1px solid #6b241d;
 }
 
 canvas{display:none}
 </style>
 </head>
 <body>
-<header>OCR照会 V3.4<button id="btnHelp" class="helpBtn">ヘルプ</button></header>
+<header>OCR照会 V3.4.2.2<button id="btnHelp" class="helpBtn">ヘルプ</button></header>
 <div class="wrap">
 <section class="camera"><video id="video" playsinline muted></video><div class="crossH"></div><div class="crossV"></div><div class="guide">型番・照会記号を十字の中心に合わせてください</div></section>
 <button id="btnFold" class="foldBtn">▲ 読取画面を隠す</button>
@@ -239,7 +374,8 @@ canvas{display:none}
 <div id="modeNote" class="note">現在：手動登録モード</div>
 <div class="status"><span class="dot"></span><span id="status">待機中</span></div>
 </div>
-<section class="panel"><h3>チェックリスト</h3></section><div id="checkList"></div>
+<section class="panel"><h3>チェックリスト</h3></section>
+<button id="btnNewDelivery" class="v342-new-folder">＋ 新しい搬入フォルダ</button><div id="checkList"></div>
 <div class="foot"><label for="csvInput" class="fileLabel black">📁 CSV読込</label><button id="btnExport" class="blue">⬇ CSV書き出し</button><input id="csvInput" type="file" accept=".csv,text/csv"></div>
 <div class="small" id="csvInfo">初期データ：33件</div><div class="raw" id="rawBox">読取文字：未読取</div>
 <section class="panel"><h3>全型番を再確認</h3><span id="dataCount">33件</span></section>
@@ -249,17 +385,46 @@ canvas{display:none}
 <canvas id="work"></canvas>
 <script>
 const DATA_INIT=[{"model": "NNFB84665", "symbol": "E1a", "type": "", "aperture": "", "watt": "", "currentA": ""}, {"model": "NNFB84695", "symbol": "E1a黒", "type": "", "aperture": "", "watt": "", "currentA": ""}, {"model": "NNFB87609", "symbol": "E2a", "type": "", "aperture": "", "watt": "", "currentA": ""}, {"model": "NNFB87649", "symbol": "E2a黒", "type": "", "aperture": "", "watt": "", "currentA": ""}, {"model": "NNFB84005", "symbol": "E3a", "type": "", "aperture": "", "watt": "", "currentA": ""}, {"model": "NNFB84045", "symbol": "E3a黒", "type": "", "aperture": "", "watt": "", "currentA": ""}, {"model": "NNFB84715", "symbol": "E4a", "type": "", "aperture": "", "watt": "", "currentA": ""}, {"model": "NNLG01509", "symbol": "E5a", "type": "", "aperture": "", "watt": "", "currentA": ""}, {"model": "NNFB84105", "symbol": "E6a", "type": "", "aperture": "", "watt": "", "currentA": ""}, {"model": "NNFB87009", "symbol": "E7a", "type": "", "aperture": "", "watt": "", "currentA": ""}, {"model": "NNFB87049", "symbol": "E7a黒", "type": "", "aperture": "", "watt": "", "currentA": ""}, {"model": "NNFB87109", "symbol": "E8a", "type": "", "aperture": "", "watt": "", "currentA": ""}, {"model": "NNFB87919", "symbol": "E9a", "type": "", "aperture": "", "watt": "", "currentA": ""}, {"model": "FA40356C LE1", "symbol": "X1L", "type": "", "aperture": "", "watt": "", "currentA": ""}, {"model": "FA40352C LE1", "symbol": "X2", "type": "", "aperture": "", "watt": "", "currentA": ""}, {"model": "FA40316C LE1", "symbol": "X3L", "type": "", "aperture": "", "watt": "", "currentA": ""}, {"model": "FA40312C LE1", "symbol": "X4", "type": "", "aperture": "", "watt": "", "currentA": ""}, {"model": "FW42317C", "symbol": "X5Lu", "type": "", "aperture": "", "watt": "", "currentA": ""}, {"model": "FW42317C", "symbol": "X6u", "type": "", "aperture": "", "watt": "", "currentA": ""}, {"model": "FW42317C LE1", "symbol": "X7u", "type": "", "aperture": "", "watt": "", "currentA": ""}, {"model": "FW42337C LE1", "symbol": "X8u", "type": "", "aperture": "", "watt": "", "currentA": ""}, {"model": "FW40315 LE1", "symbol": "X9L", "type": "", "aperture": "", "watt": "", "currentA": ""}, {"model": "FW42327C LE1", "symbol": "X10u", "type": "", "aperture": "", "watt": "", "currentA": ""}, {"model": "FA40356C LE1", "symbol": "Y1L", "type": "", "aperture": "", "watt": "", "currentA": ""}, {"model": "FA40366C LE1", "symbol": "Y2L", "type": "", "aperture": "", "watt": "", "currentA": ""}, {"model": "FA40352C LE1", "symbol": "Y3", "type": "", "aperture": "", "watt": "", "currentA": ""}, {"model": "FA40362C LE1", "symbol": "Y4", "type": "", "aperture": "", "watt": "", "currentA": ""}, {"model": "FA40312C LE1", "symbol": "Y5", "type": "", "aperture": "", "watt": "", "currentA": ""}, {"model": "FA40322C LE1", "symbol": "Y6", "type": "", "aperture": "", "watt": "", "currentA": ""}, {"model": "FW42317C LE1", "symbol": "Y7u", "type": "", "aperture": "", "watt": "", "currentA": ""}, {"model": "FW42337C LE1", "symbol": "Y8u", "type": "", "aperture": "", "watt": "", "currentA": ""}, {"model": "FA01520J", "symbol": "Y9", "type": "", "aperture": "", "watt": "", "currentA": ""}, {"model": "FSK90910K", "symbol": "自己点検リモコン", "type": "", "aperture": "", "watt": "", "currentA": ""}];
-let data=DATA_INIT.slice(),checklist=[],current=null,stream=null,worker=null,timer=null,busy=false,torchOn=false,isStopped=false,editIdx=null,readTarget="model",registerMode="manual",lastAutoKey="",lastAutoTime=0,folderOpen={},controlsCollapsed=false;
+let data=DATA_INIT.slice(),checklist=[],current=null,stream=null,worker=null,timer=null,busy=false,torchOn=false,isStopped=false,editIdx=null,readTarget="model",registerMode="manual",lastAutoKey="",lastAutoTime=0,deliveries=[],activeDeliveryId=null,deliveryOpen={},folderOpen={},controlsCollapsed=false;
 let rules=[{key:"E",name:"非常照明",color:"#35d66b"},{key:"Y",name:"通路誘導灯",color:"#1d7cff"},{key:"X",name:"避難口誘導灯",color:"#ff3030"},{key:"U",name:"防湿・防雨",color:"#43cde6"},{key:"LS",name:"誘導標識",color:"#ffffff"},{key:"Z",name:"階段通路誘導灯",color:"#ffd31a"},{key:"中継",name:"信号装置・中継器",color:"#a3e635"},{key:"埋",name:"埋込",color:"#9747ff"},{key:"直",name:"直付",color:"#ff8200"},{key:"壁",name:"壁付",color:"#b08cff"},{key:"天",name:"天井",color:"#999999"},{key:"低",name:"低天井",color:"#7dd3fc"},{key:"中",name:"中天井",color:"#60a5fa"},{key:"高",name:"高天井",color:"#2563eb"},{key:"BH",name:"B級BH",color:"#f97316"},{key:"BL",name:"B級BL",color:"#fb923c"},{key:"C",name:"C級",color:"#facc15"},{key:"リ",name:"リモコン",color:"#ff6aa8"},{key:"器",name:"中継器",color:"#00d7c7"},{key:"他",name:"その他",color:"#ffffff"}];
 const palette=["#ff3030","#1d7cff","#ffd31a","#ff8200","#35d66b","#9747ff","#43cde6","#7a3f18","#ffffff","#999999","#b08cff","#f97316","#fb923c","#a3e635","#60a5fa","#2563eb","#facc15","#ff6aa8","#00d7c7","#111111"];
 const esc=s=>String(s||"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
-window.addEventListener("DOMContentLoaded",()=>{loadRules();btnFold.onclick=toggleControls;btnModelRead.onclick=()=>setReadTarget("model");btnSymbolRead.onclick=()=>setReadTarget("symbol");btnManualMode.onclick=()=>setRegisterMode("manual");btnAutoMode.onclick=()=>setRegisterMode("auto");btnStart.onclick=startAuto;btnAdd.onclick=addCurrent;btnLight.onclick=toggleLight;btnRead.onclick=readOnce;btnStop.onclick=stopAll;btnExport.onclick=exportCsv;csvInput.onchange=loadCsv;btnHelp.onclick=()=>{drawer.style.display="block";renderHelp();showTab("list")};btnClose.onclick=()=>drawer.style.display="none";document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>showTab(b.dataset.tab));renderChecklist();renderReviewList();});
+window.addEventListener("DOMContentLoaded",()=>{loadRules();btnFold.onclick=toggleControls;btnModelRead.onclick=()=>setReadTarget("model");btnSymbolRead.onclick=()=>setReadTarget("symbol");btnManualMode.onclick=()=>setRegisterMode("manual");btnAutoMode.onclick=()=>setRegisterMode("auto");if(typeof btnNewDelivery!=='undefined')btnNewDelivery.onclick=createNewDelivery;
+btnStart.onclick=startAuto;btnAdd.onclick=addCurrent;btnLight.onclick=toggleLight;btnRead.onclick=readOnce;btnStop.onclick=stopAll;btnExport.onclick=exportCsv;csvInput.onchange=loadCsv;btnHelp.onclick=()=>{drawer.style.display="block";renderHelp();showTab("list")};btnClose.onclick=()=>drawer.style.display="none";document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>showTab(b.dataset.tab));renderChecklist();renderReviewList();});
 function setStatus(s){status.textContent=s}
-function v34ToggleFolder(date){
+function ensureDelivery(){
+  if(!activeDeliveryId){
+    createNewDelivery();
+  }
+}
+function deliveryLabel(){
+  let d=new Date();
+  return d.toISOString().slice(0,10).replaceAll("-","/")+" 搬入"+(deliveries.length+1);
+}
+function createNewDelivery(){
+  let d=new Date();
+  let id="D"+Date.now();
+  let label=deliveryLabel();
+  deliveries.unshift({id,label,created:d.toLocaleTimeString().slice(0,5)});
+  activeDeliveryId=id;
+  deliveryOpen[id]=true;
+  setStatus("新しい搬入フォルダ："+label);
+  renderChecklist();
+}
+function toggleDelivery(id){
+  deliveryOpen[id]=deliveryOpen[id]===false?true:false;
+  renderChecklist();
+}
+function v342DeleteItem(i){
+  if(!confirm("この行を削除しますか？"))return;
+  checklist.splice(i,1);
+  renderChecklist();
+}
+function v341ToggleFolder(date){
   folderOpen[date]=folderOpen[date]===false?true:false;
   renderChecklist();
 }
-function v34DeleteItem(i){
+function v341DeleteItem(i){
   if(!confirm("この行を削除しますか？"))return;
   checklist.splice(i,1);
   renderChecklist();
@@ -293,7 +458,7 @@ function sim(a,b){a=normalize(a);b=normalize(b);let m=a.length,l=b.length;if(!m|
 function matchModel(text){let c=extractCandidates(text),j=normalize(text);for(const r of data){let m=normalize(r.model);if(j.includes(m))return{hit:r,cand:r.model,score:1}}let best={hit:null,cand:c[0]||"",score:0};for(const r of data){let m=normalize(r.model);for(const x of c){let s=sim(x,m);if(s>best.score)best={hit:r,cand:x,score:s}}}if(best.score>=0.72)return best;if(c.length)return{hit:null,cand:c[0],score:best.score};return{hit:null,cand:"未読取",score:0}}
 function matchSymbol(text){let cs=extractSymbolCandidates(text);for(const c of cs){let nc=normSymbol(c);let hit=data.find(r=>normSymbol(r.symbol)===nc);if(hit)return{hit,cand:c,score:1}}for(const c of cs){let nc=normSymbol(c);let hit=data.find(r=>normSymbol(r.symbol).startsWith(nc)||nc.startsWith(normSymbol(r.symbol)));if(hit)return{hit,cand:c,score:.86}}return{hit:null,cand:cs[0]||safeOcrText(text),score:0}}
 function isDuplicateModel(model){let k=normalize(model);return data.filter(r=>normalize(r.model)===k).length>1}
-function addCurrentCore(silent=false){if(!current){if(!silent)alert("先に読取してください");return false}let d=new Date(),date=d.toISOString().slice(0,10).replaceAll("-","/"),time=d.toTimeString().slice(0,5),key=current.missing?current.model:current.symbol;let f=checklist.find(x=>x.date===date&&x.symbol===key);if(f&&!f.locked)f.qty+=1;else checklist.unshift({date,time,symbol:key,model:current.model,type:current.type,qty:1,locked:false,missing:current.missing});renderChecklist();return true}
+function addCurrentCore(silent=false){if(!current){if(!silent)alert("先に読取してください");return false}ensureDelivery();let d=new Date(),date=d.toISOString().slice(0,10).replaceAll("-","/"),time=d.toTimeString().slice(0,5),key=current.missing?current.model:current.symbol;let f=checklist.find(x=>x.deliveryId===activeDeliveryId&&x.symbol===key&&x.model===current.model);if(f&&!f.locked)f.qty+=1;else checklist.unshift({deliveryId:activeDeliveryId,date,time,symbol:key,model:current.model,type:current.type,qty:1,locked:false,missing:current.missing});renderChecklist();return true}
 function tryAutoRegister(hit,score){if(registerMode!=="auto"||readTarget!=="model")return;if(!hit||score<.86){setStatus("自動停止：一致率不足");return}if(isDuplicateModel(hit.model)){setStatus("自動停止：重複型番のため手動確認");return}let key=hit.model+"|"+hit.symbol,now=Date.now();if(lastAutoKey===key&&now-lastAutoTime<2000)return;lastAutoKey=key;lastAutoTime=now;if(addCurrentCore(true))setStatus("自動登録完了："+hit.symbol)}
 async function ensureWorker(){if(worker)return worker;setStatus("OCR準備中...");worker=await Tesseract.createWorker("eng",1);await worker.setParameters({tessedit_char_whitelist:"ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789- ",tessedit_pageseg_mode:"6"});setStatus("OCR準備完了");return worker}
 async function startAuto(){try{isStopped=false;await startCamera();if(timer)clearInterval(timer);timer=setInterval(readOnce,1200);await readOnce()}catch(e){setStatus("カメラエラー："+e.message);alert("カメラ起動失敗："+e.message)}}
@@ -306,43 +471,50 @@ function showHit(hit,score,read){
 let cat=categoryFor(hit.symbol,hit.type);
 current={model:hit.model,symbol:hit.symbol,type:hit.type,missing:false};
 result.style.borderColor=cat.color;
-result.innerHTML=`<div class="v34ResultCard"><div class="v34ResultTitle">✅ 照合一致</div><div class="v34ResultMain"><div class="v34ResultModel">${esc(hit.model)}</div><div class="v34ResultSymbol" style="color:${cat.color}">${esc(hit.symbol)}</div></div><div class="v34Sub">読取：${esc(read||hit.model)} / ${isDuplicateModel(hit.model)?"⚠ 重複型番：手動確認 / ":""}一致率：${Math.round(score*100)}%</div></div><div class="ruleBox" style="color:${cat.color}"><div class="ruleKey">${esc(cat.key)}</div><div class="ruleName">${esc(cat.name)}</div></div>`;
+result.innerHTML=`<div class="v342-read-wrap"><div class="v342-result-card"><div class="v342-title">✅ 照合一致</div><div class="v342-line"><div class="v342-model">${esc(hit.model)}</div><div class="v342-symbol" style="color:${cat.color}">${esc(hit.symbol)}</div></div><div class="v342-sub">読取：${esc(read||hit.model)} / ${isDuplicateModel(hit.model)?"⚠ 重複型番：手動確認 / ":""}一致率：${Math.round(score*100)}%</div></div></div><div class="ruleBox" style="color:${cat.color}"><div class="ruleKey">${esc(cat.key)}</div><div class="ruleName">${esc(cat.name)}</div></div>`;
 setStatus(hit.model+" → "+hit.symbol)}
 function showSymbolHit(hit,score,read){
 let cat=categoryFor(hit.symbol,hit.type);
 current={model:hit.model,symbol:hit.symbol,type:hit.type,missing:false};
 result.style.borderColor=cat.color;
-result.innerHTML=`<div class="v34ResultCard"><div class="v34ResultTitle">✅ 照会記号一致</div><div class="v34ResultMain"><div class="v34ResultModel">${esc(hit.model)}</div><div class="v34ResultSymbol" style="color:${cat.color}">${esc(hit.symbol)}</div></div><div class="v34Sub">読取：${esc(read||hit.symbol)} / 一致率：${Math.round(score*100)}%</div><div class="specBox"><div class="spec"><small>開口</small>${esc(hit.aperture||"未入力")}</div><div class="spec"><small>W数</small>${esc(hit.watt||"未入力")}</div><div class="spec"><small>電流</small>${esc(hit.currentA||"未入力")}</div><div class="spec"><small>型番</small>${esc(hit.model||"")}</div></div></div><div class="ruleBox" style="color:${cat.color}"><div class="ruleKey">${esc(cat.key)}</div><div class="ruleName">${esc(cat.name)}</div></div>`;
+result.innerHTML=`<div class="v342-read-wrap"><div class="v342-result-card"><div class="v342-title">✅ 照会記号一致</div><div class="v342-line"><div class="v342-model">${esc(hit.model)}</div><div class="v342-symbol" style="color:${cat.color}">${esc(hit.symbol)}</div></div><div class="v342-sub">読取：${esc(read||hit.symbol)} / 一致率：${Math.round(score*100)}%</div><div class="specBox"><div class="spec"><small>開口</small>${esc(hit.aperture||"未入力")}</div><div class="spec"><small>W数</small>${esc(hit.watt||"未入力")}</div><div class="spec"><small>電流</small>${esc(hit.currentA||"未入力")}</div><div class="spec"><small>型番</small>${esc(hit.model||"")}</div></div></div></div><div class="ruleBox" style="color:${cat.color}"><div class="ruleKey">${esc(cat.key)}</div><div class="ruleName">${esc(cat.name)}</div></div>`;
 setStatus("照会一致："+hit.symbol)}
 function showMissing(cand,raw){let shown=(cand&&cand!=="未読取")?String(cand).slice(0,24):safeOcrText(raw);current={model:shown,symbol:"未登録",type:"",missing:true};result.style.borderColor="#fff";result.innerHTML=`<div><div class="state">未登録</div><div class="readModel">${esc(shown)}</div><div class="meta">OCR読取文字を表示中<br>自動登録は停止します</div></div><div class="ruleBox" style="color:#fff"><div class="ruleKey">白</div><div class="ruleName">未登録</div></div>`;setStatus("自動停止：未登録")}
 function addCurrent(){addCurrentCore(false)}
 function renderChecklist(){
-let groups={};
-checklist.forEach((x,i)=>{x._i=i;(groups[x.date]||(groups[x.date]=[])).push(x)});
+if(deliveries.length===0&&checklist.length>0){
+  let id="D0";
+  deliveries.push({id,label:"既存リスト",created:""});
+  activeDeliveryId=id;
+  deliveryOpen[id]=true;
+  checklist.forEach(x=>{if(!x.deliveryId)x.deliveryId=id});
+}
 let h="";
-Object.keys(groups).sort().reverse().forEach(date=>{
-  let arr=groups[date];
+deliveries.forEach(del=>{
+  let arr=checklist.filter(x=>x.deliveryId===del.id);
   let total=arr.reduce((s,x)=>s+x.qty,0);
-  if(folderOpen[date]===undefined)folderOpen[date]=true;
-  let open=folderOpen[date]!==false;
-  h+=`<div class="v34Folder"><div class="v34FolderTitle" data-folder="${date}"><span>${open?"▼":"▶"} ${date}（${arr.length}件）</span><span>合計:${total}</span></div><div class="v34FolderBody ${open?"":"closed"}">`;
+  if(deliveryOpen[del.id]===undefined)deliveryOpen[del.id]=true;
+  let open=deliveryOpen[del.id]!==false;
+  h+=`<div class="v342-delivery"><div class="v342-delivery-title" data-delivery="${del.id}"><span>${open?"▼":"▶"} ${esc(del.label)}（${arr.length}件）</span><span>合計:${total}</span></div><div class="v342-delivery-body ${open?"":"closed"}">`;
   arr.forEach(x=>{
     let c=categoryFor(x.symbol,x.type);
-    h+=`<div class="v34Card"><div class="v34Top"><div class="v34Model">${esc(x.model)}</div><div class="v34Qty">${x.qty}台</div></div><div class="v34Symbol" style="color:${c.color}">${esc(x.symbol)}</div><div class="v34QtyBtns"><button class="qbtn minus" data-i="${x._i}" data-d="-10">-10</button><button class="qbtn minus" data-i="${x._i}" data-d="-1">-1</button><button class="qbtn plus" data-i="${x._i}" data-d="1">+1</button><button class="qbtn plus" data-i="${x._i}" data-d="10">+10</button></div><div class="v34Bottom"><button class="v34Lock ${x.locked?"locked":""}" data-l="${x._i}">🔒 固定</button><button class="v34Delete" data-del="${x._i}">削除</button></div></div>`;
+    let idx=checklist.indexOf(x);
+    h+=`<div class="v342-card"><div class="v342-top"><div class="v342-card-model">${esc(x.model)}</div><div class="v342-card-qty">${x.qty}台</div></div><div class="v342-card-symbol" style="color:${c.color}">${esc(x.symbol)}</div><div class="v342-qty-btns"><button class="qbtn minus" data-i="${idx}" data-d="-10">-10</button><button class="qbtn minus" data-i="${idx}" data-d="-1">-1</button><button class="qbtn plus" data-i="${idx}" data-d="1">+1</button><button class="qbtn plus" data-i="${idx}" data-d="10">+10</button></div><div class="v342-bottom"><button class="v342-lock ${x.locked?"locked":""}" data-l="${idx}">🔒 固定</button><button class="v342-delete" data-del="${idx}">削除</button></div></div>`;
   });
   h+=`</div></div>`;
 });
 checkList.innerHTML=h;
-checkList.querySelectorAll("[data-folder]").forEach(b=>b.onclick=()=>v34ToggleFolder(b.dataset.folder));
+checkList.querySelectorAll("[data-delivery]").forEach(b=>b.onclick=()=>toggleDelivery(b.dataset.delivery));
 checkList.querySelectorAll("[data-i]").forEach(b=>b.onclick=()=>{let i=+b.dataset.i;if(checklist[i].locked)return;checklist[i].qty=Math.max(0,checklist[i].qty+Number(b.dataset.d));renderChecklist()});
 checkList.querySelectorAll("[data-l]").forEach(b=>b.onclick=()=>{let i=+b.dataset.l;checklist[i].locked=!checklist[i].locked;renderChecklist()});
-checkList.querySelectorAll("[data-del]").forEach(b=>b.onclick=()=>v34DeleteItem(+b.dataset.del));
+checkList.querySelectorAll("[data-del]").forEach(b=>b.onclick=()=>v342DeleteItem(+b.dataset.del));
 }
 function renderReviewList(){dataCount.textContent=data.length+"件";let counts={};data.forEach(r=>{let k=normalize(r.model);counts[k]=(counts[k]||0)+1});reviewList.innerHTML='<div class="reviewHead"><div>型番</div><div>紹介記号</div><div>器具種別</div></div>'+data.map(r=>{let c=categoryFor(r.symbol,r.type),dup=counts[normalize(r.model)]>1;return `<div class="reviewRow ${dup?"dup":""}"><div class="reviewModel">${esc(r.model)}${dup?' <span class="dupMark">重複</span>':""}</div><div class="reviewSym" style="color:${c.color}">${esc(r.symbol)}</div><div class="reviewType">${esc(r.type||"")}</div></div>`}).join("")}
 function exportCsv(){
-let lines=["日付,時刻,型番,紹介記号,数量,固定"];
+let lines=["搬入フォルダ,日付,時刻,型番,紹介記号,数量,固定"];
 checklist.forEach(x=>{
-  lines.push([x.date,x.time,x.model,x.symbol,x.qty,x.locked?"固定":""].map(v=>'"'+String(v).replaceAll('"','""')+'"').join(","))
+  let del=deliveries.find(d=>d.id===x.deliveryId);
+  lines.push([del?del.label:"",x.date,x.time,x.model,x.symbol,x.qty,x.locked?"固定":""].map(v=>'"'+String(v).replaceAll('"','""')+'"').join(","))
 });
 let blob=new Blob(["\uFEFF"+lines.join("\r\n")],{type:"text/csv;charset=utf-8;"});
 let a=document.createElement("a");
