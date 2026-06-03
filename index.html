@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>OCR照会 V3.4.5.4.2</title>
+<title>OCR照会 V3.4.6.6.4.2</title>
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 <style>
 *{box-sizing:border-box}
@@ -360,9 +360,7 @@ input[type=file]{display:none}
 
 /* V3.4.5 OCR text always visible */
 .v345-ocr-always{
-  position:sticky;
-  top:48px;
-  z-index:4;
+  position:static;
   border:2px solid #8a5a3f!important;
   background:#fff!important;
   color:#111!important;
@@ -374,14 +372,15 @@ canvas{display:none}
 </style>
 </head>
 <body>
-<header>OCR照会 V3.4.5.4.2<button id="btnHelp" class="helpBtn">ヘルプ</button></header>
+<header>OCR照会 V3.4.6.6.4.2<button id="btnHelp" class="helpBtn">ヘルプ</button></header>
 <div class="wrap">
 <section class="camera"><video id="video" playsinline muted></video><div class="crossH"></div><div class="crossV"></div><div class="guide">型番・照会記号を十字の中心に合わせてください</div></section>
-<div class="raw v345-ocr-always" id="rawBox">読取文字：未読取</div>
+<div class="raw" id="rawBox" style="display:none">読取文字：未読取</div>
+<section class="result" id="result"><div><div class="state">待機中</div><div class="readModel">---</div><div class="meta">読取結果を表示します</div></div><div class="ruleBox" style="color:white"><div class="ruleKey">白</div><div class="ruleName">その他</div></div></section>
 <button id="btnFold" class="foldBtn">▲ 読取画面を隠す</button>
 <div id="controlBlock" class="controlBlock">
 <div class="readmode"><button id="btnModelRead" class="modeBtn active">型番読取</button><button id="btnSymbolRead" class="modeBtn">照会記号読取</button></div>
-<section class="result" id="result"><div><div class="state">待機中</div><div class="readModel">---</div><div class="meta">読取結果を表示します</div></div><div class="ruleBox" style="color:white"><div class="ruleKey">白</div><div class="ruleName">その他</div></div></section>
+
 <div class="grid3"><button id="btnStart" class="blue">📷 カメラ起動<br><small>自動読取</small></button><button id="btnAdd" class="green">✔ 登録<br><small>手動追加</small></button><button id="btnLight" class="black">💡<br>ライト</button></div>
 <div class="grid2"><button id="btnRead" class="black">1回だけ読取</button><button id="btnStop" class="red">■ 停止</button></div>
 <div class="regmode"><button id="btnManualMode" class="modeBtn active">手動登録</button><button id="btnAutoMode" class="modeBtn">自動登録</button></div>
