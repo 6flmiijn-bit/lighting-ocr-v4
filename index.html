@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>OCR照会 V3.4.6.6.4.2</title>
+<title>OCR照会 V3.4.10.10.8.4.2</title>
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 <style>
 *{box-sizing:border-box}
 body{margin:0;background:#d7b18e;color:#24170f;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-header{height:48px;background:#8a5a3f;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px;position:sticky;top:0;z-index:5}
+header{height:48px;background:#8a5a3f;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px;position:static;top:0;z-index:5}
 .helpBtn{position:absolute;right:8px;top:7px;background:#5b3423;color:#fff;border:1px solid #2f1b12;border-radius:10px;padding:7px 10px;font-size:13px}
 .wrap{max-width:760px;margin:auto;padding:10px}
 .camera{position:relative;border:2px solid #6b8f5a;border-radius:16px;overflow:hidden;background:#2a201a;margin-bottom:10px}
@@ -358,26 +358,183 @@ input[type=file]{display:none}
 }
 
 
-/* V3.4.5 OCR text always visible */
-.v345-ocr-always{
+/* V3.4.8 stable: result card always visible */
+.result{
+  min-height:80px;
+  margin-bottom:8px;
+}
+.resultAlways{
   position:static;
-  border:2px solid #8a5a3f!important;
-  background:#fff!important;
-  color:#111!important;
-  max-height:90px!important;
-  overflow:auto!important;
+  
+  
+}
+.controlBlock.collapsed{
+  display:none!important;
+}
+
+
+/* V3.4.10 compact result + compact checklist */
+.result{
+  min-height:40px!important;
+  max-height:40px!important;
+  overflow:hidden!important;
+  margin-bottom:6px!important;
+  padding:4px 8px!important;
+  display:grid!important;
+  grid-template-columns:1fr!important;
+}
+.result .ruleBox,
+.result .rule-box{
+  display:none!important;
+}
+.result .state{
+  font-size:13px!important;
+  line-height:1!important;
+  margin:0!important;
+}
+.result .readModel,
+.result .read-model,
+.result .model,
+.result .v342-model,
+.result .v341-result-model{
+  font-size:16px!important;
+  line-height:1.05!important;
+  margin:0!important;
+  padding:0!important;
+  background:transparent!important;
+  border:0!important;
+  min-width:0!important;
+}
+.result .symbol,
+.result .v342-symbol,
+.result .v341-result-symbol{
+  font-size:16px!important;
+  line-height:1!important;
+}
+.result .meta,
+.result .v342-sub,
+.result .v341-sub{
+  display:none!important;
+}
+.v341-result-card,
+.v342-result-card,
+.v34ResultCard{
+  padding:0!important;
+  border:0!important;
+  background:transparent!important;
+}
+.v341-title,
+.v342-title,
+.v34ResultTitle{
+  font-size:13px!important;
+  line-height:1!important;
+  margin:0!important;
+}
+.v341-result-line,
+.v342-line,
+.v34ResultMain{
+  display:flex!important;
+  justify-content:space-between!important;
+  gap:8px!important;
+  align-items:center!important;
+}
+.v410-folder{
+  border:1px solid #8a5a3f;
+  border-radius:10px;
+  overflow:hidden;
+  margin-top:8px;
+  background:#f0dfcf;
+}
+.v410-folder-title{
+  background:#8a5a3f;
+  color:#fff;
+  padding:8px 10px;
+  font-weight:900;
+  display:flex;
+  justify-content:space-between;
+  cursor:pointer;
+  font-size:14px;
+}
+.v410-folder-body.closed{display:none}
+.v410-row{
+  display:grid;
+  grid-template-columns:1fr 48px 44px 128px 60px;
+  gap:3px;
+  align-items:center;
+  padding:4px;
+  border-top:1px solid #c49a7b;
+  background:#fff6ee;
+  color:#111;
+  min-height:38px;
+}
+.v410-model{
+  font-size:12px;
+  font-weight:1000;
+  line-height:1.1;
+  word-break:break-all;
+}
+.v410-symbol{
+  font-size:14px;
+  font-weight:1000;
+  text-align:center;
+}
+.v410-qty{
+  font-size:14px;
+  font-weight:1000;
+  text-align:right;
+  color:#5b3423;
+  white-space:nowrap;
+}
+.v410-qtybtns{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr 1fr;
+  gap:2px;
+}
+.v410-qtybtns .qbtn{
+  font-size:11px!important;
+  padding:4px 0!important;
+  border-radius:5px!important;
+}
+.v410-actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:2px;
+}
+.v410-actions button{
+  font-size:10px!important;
+  padding:5px 1px!important;
+  border-radius:5px!important;
+}
+.v410-lock{
+  background:#fff;
+  color:#111;
+  border:1px solid #8a5a3f;
+}
+.v410-lock.locked{
+  color:#ffd400!important;
+  background:#5b3423!important;
+}
+.v410-delete{
+  background:#9b3f34;
+  color:#fff;
+  border:1px solid #6b241d;
+}
+@media(max-width:430px){
+  .v410-row{grid-template-columns:1fr 44px 40px 112px 54px}
+  .v410-model{font-size:11px}
+  .v410-symbol{font-size:13px}
+  .v410-qty{font-size:13px}
 }
 
 canvas{display:none}
 </style>
 </head>
 <body>
-<header>OCR照会 V3.4.6.6.4.2<button id="btnHelp" class="helpBtn">ヘルプ</button></header>
+<header>OCR照会 V3.4.10.10.8.4.2<button id="btnHelp" class="helpBtn">ヘルプ</button></header>
 <div class="wrap">
 <section class="camera"><video id="video" playsinline muted></video><div class="crossH"></div><div class="crossV"></div><div class="guide">型番・照会記号を十字の中心に合わせてください</div></section>
-<div class="raw" id="rawBox" style="display:none">読取文字：未読取</div>
-<section class="result" id="result"><div><div class="state">待機中</div><div class="readModel">---</div><div class="meta">読取結果を表示します</div></div><div class="ruleBox" style="color:white"><div class="ruleKey">白</div><div class="ruleName">その他</div></div></section>
-<button id="btnFold" class="foldBtn">▲ 読取画面を隠す</button>
+<section class="result resultAlways" id="result"><div><div class="state">待機中</div><div class="readModel">---</div><div class="meta">読取結果を表示します</div></div><div class="ruleBox" style="color:white"><div class="ruleKey">白</div><div class="ruleName">その他</div></div></section>
+<button id="btnFold" class="foldBtn">▲ 操作部を隠す</button>
 <div id="controlBlock" class="controlBlock">
 <div class="readmode"><button id="btnModelRead" class="modeBtn active">型番読取</button><button id="btnSymbolRead" class="modeBtn">照会記号読取</button></div>
 
@@ -391,7 +548,7 @@ canvas{display:none}
 <button id="btnNewDelivery" class="v342-new-folder">＋ 新しい搬入フォルダ</button><div id="checkList"></div>
 <div class="small">チェックリストが0件の場合は保存しません。保存後に削除/残すを選べます。</div>
 <div class="foot"><label for="csvInput" class="fileLabel black">📁 CSV読込</label><button id="btnExport" class="blue">⬇ CSV書き出し</button><input id="csvInput" type="file" accept=".csv,text/csv"></div>
-<div class="small" id="csvInfo">初期データ：33件</div>
+<div class="small" id="csvInfo">初期データ：33件</div><div class="raw" id="rawBox">読取文字：未読取</div>
 <section class="panel"><h3>全型番を再確認</h3><span id="dataCount">33件</span></section>
 <div class="reviewHelp">基本3列＋あとで 開口サイズ / W数 / 電流値 を追加できます。</div><div id="reviewList" class="reviewBox"></div>
 </div>
@@ -446,7 +603,7 @@ function v341DeleteItem(i){
 function toggleControls(){
   controlsCollapsed=!controlsCollapsed;
   controlBlock.classList.toggle("collapsed",controlsCollapsed);
-  btnFold.textContent=controlsCollapsed?"▼ 読取画面を表示":"▲ 読取画面を隠す";
+  btnFold.textContent=controlsCollapsed?"▼ 操作部を表示":"▲ 操作部を隠す";
 }
 function deleteChecklistItem(i){
   if(!confirm("この行を削除しますか？"))return;
@@ -496,7 +653,7 @@ setStatus("照会一致："+hit.symbol)}
 function showMissing(cand,raw){let shown=(cand&&cand!=="未読取")?String(cand).slice(0,24):safeOcrText(raw);current={model:shown,symbol:"未登録",type:"",missing:true};result.style.borderColor="#fff";result.innerHTML=`<div><div class="state">未登録</div><div class="readModel">${esc(shown)}</div><div class="meta">OCR読取文字を表示中<br>自動登録は停止します</div></div><div class="ruleBox" style="color:#fff"><div class="ruleKey">白</div><div class="ruleName">未登録</div></div>`;setStatus("自動停止：未登録")}
 function addCurrent(){addCurrentCore(false)}
 function renderChecklist(){
-if(deliveries.length===0&&checklist.length>0){
+if(typeof deliveries!=="undefined"&&deliveries.length===0&&checklist.length>0){
   let id="D0";
   deliveries.push({id,label:"既存リスト",created:""});
   activeDeliveryId=id;
@@ -504,24 +661,26 @@ if(deliveries.length===0&&checklist.length>0){
   checklist.forEach(x=>{if(!x.deliveryId)x.deliveryId=id});
 }
 let h="";
-deliveries.forEach(del=>{
-  let arr=checklist.filter(x=>x.deliveryId===del.id);
-  let total=arr.reduce((s,x)=>s+x.qty,0);
-  if(deliveryOpen[del.id]===undefined)deliveryOpen[del.id]=true;
-  let open=deliveryOpen[del.id]!==false;
-  h+=`<div class="v342-delivery"><div class="v342-delivery-title" data-delivery="${del.id}"><span>${open?"▼":"▶"} ${esc(del.label)}（${arr.length}件）</span><span>合計:${total}</span></div><div class="v342-delivery-body ${open?"":"closed"}">`;
-  arr.forEach(x=>{
-    let c=categoryFor(x.symbol,x.type);
-    let idx=checklist.indexOf(x);
-    h+=`<div class="v342-card"><div class="v342-top"><div class="v342-card-model">${esc(x.model)}</div><div class="v342-card-qty">${x.qty}台</div></div><div class="v342-card-symbol" style="color:${c.color}">${esc(x.symbol)}</div><div class="v342-qty-btns"><button class="qbtn minus" data-i="${idx}" data-d="-10">-10</button><button class="qbtn minus" data-i="${idx}" data-d="-1">-1</button><button class="qbtn plus" data-i="${idx}" data-d="1">+1</button><button class="qbtn plus" data-i="${idx}" data-d="10">+10</button></div><div class="v342-bottom"><button class="v342-lock ${x.locked?"locked":""}" data-l="${idx}">🔒 固定</button><button class="v342-delete" data-del="${idx}">削除</button></div></div>`;
+if(typeof deliveries!=="undefined"&&deliveries.length){
+  deliveries.forEach(del=>{
+    let arr=checklist.filter(x=>x.deliveryId===del.id);
+    let total=arr.reduce((s,x)=>s+x.qty,0);
+    if(deliveryOpen[del.id]===undefined)deliveryOpen[del.id]=true;
+    let open=deliveryOpen[del.id]!==false;
+    h+=`<div class="v410-folder"><div class="v410-folder-title" data-delivery="${del.id}"><span>${open?"▼":"▶"} ${esc(del.label)}（${arr.length}件）</span><span>合計:${total}</span></div><div class="v410-folder-body ${open?"":"closed"}">`;
+    arr.forEach(x=>{
+      let c=categoryFor(x.symbol,x.type);
+      let idx=checklist.indexOf(x);
+      h+=`<div class="v410-row"><div class="v410-model">${esc(x.model)}</div><div class="v410-symbol" style="color:${c.color}">${esc(x.symbol)}</div><div class="v410-qty">${x.qty}台</div><div class="v410-qtybtns"><button class="qbtn minus" data-i="${idx}" data-d="-10">-10</button><button class="qbtn minus" data-i="${idx}" data-d="-1">-1</button><button class="qbtn plus" data-i="${idx}" data-d="1">+1</button><button class="qbtn plus" data-i="${idx}" data-d="10">+10</button></div><div class="v410-actions"><button class="v410-lock ${x.locked?"locked":""}" data-l="${idx}">🔒</button><button class="v410-delete" data-del="${idx}">削除</button></div></div>`;
+    });
+    h+=`</div></div>`;
   });
-  h+=`</div></div>`;
-});
+}
 checkList.innerHTML=h;
 checkList.querySelectorAll("[data-delivery]").forEach(b=>b.onclick=()=>toggleDelivery(b.dataset.delivery));
 checkList.querySelectorAll("[data-i]").forEach(b=>b.onclick=()=>{let i=+b.dataset.i;if(checklist[i].locked)return;checklist[i].qty=Math.max(0,checklist[i].qty+Number(b.dataset.d));renderChecklist()});
 checkList.querySelectorAll("[data-l]").forEach(b=>b.onclick=()=>{let i=+b.dataset.l;checklist[i].locked=!checklist[i].locked;renderChecklist()});
-checkList.querySelectorAll("[data-del]").forEach(b=>b.onclick=()=>v342DeleteItem(+b.dataset.del));
+checkList.querySelectorAll("[data-del]").forEach(b=>b.onclick=()=>v410DeleteItem(+b.dataset.del));
 }
 function renderReviewList(){dataCount.textContent=data.length+"件";let counts={};data.forEach(r=>{let k=normalize(r.model);counts[k]=(counts[k]||0)+1});reviewList.innerHTML='<div class="reviewHead"><div>型番</div><div>紹介記号</div><div>器具種別</div></div>'+data.map(r=>{let c=categoryFor(r.symbol,r.type),dup=counts[normalize(r.model)]>1;return `<div class="reviewRow ${dup?"dup":""}"><div class="reviewModel">${esc(r.model)}${dup?' <span class="dupMark">重複</span>':""}</div><div class="reviewSym" style="color:${c.color}">${esc(r.symbol)}</div><div class="reviewType">${esc(r.type||"")}</div></div>`}).join("")}
 function exportCsv(){
@@ -531,7 +690,7 @@ if(!checklist.length){
 }
 let lines=["搬入フォルダ,日付,時刻,型番,紹介記号,数量,固定"];
 checklist.forEach(x=>{
-  let del=deliveries&&deliveries.find?deliveries.find(d=>d.id===x.deliveryId):null;
+  let del=(typeof deliveries!=="undefined"&&deliveries.find)?deliveries.find(d=>d.id===x.deliveryId):null;
   lines.push([del?del.label:"",x.date,x.time,x.model,x.symbol,x.qty,x.locked?"固定":""].map(v=>'"'+String(v).replaceAll('"','""')+'"').join(","))
 });
 let blob=new Blob(["\uFEFF"+lines.join("\r\n")],{type:"text/csv;charset=utf-8;"});
@@ -540,14 +699,13 @@ let d=new Date().toISOString().slice(0,10).replaceAll("-","");
 a.href=URL.createObjectURL(blob);
 a.download="チェックリスト_"+d+".csv";
 a.click();
-
 setTimeout(()=>{
   let clear=confirm("CSV保存しました。\nチェックリストを削除しますか？\n\nOK：削除する\nキャンセル：残す");
   if(clear){
     checklist=[];
-    deliveries=[];
-    activeDeliveryId=null;
-    deliveryOpen={};
+    if(typeof deliveries!=="undefined")deliveries=[];
+    if(typeof activeDeliveryId!=="undefined")activeDeliveryId=null;
+    if(typeof deliveryOpen!=="undefined")deliveryOpen={};
     renderChecklist();
     setStatus("保存後、チェックリストを削除しました");
   }else{
